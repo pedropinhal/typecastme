@@ -6,4 +6,4 @@ deployment:
 
 test:
   override:    
-    - - ng test --code-coverage --single-run
+    - ng test --code-coverage --single-run
