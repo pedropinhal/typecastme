@@ -11,5 +11,20 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
   }
+  showImage: boolean = false;
+  pageTitle: string = 'Product List';
+  products: any[] =[{
+    "productId": 2,
+    "productName": "Garden Cart",
+    "productCode": "GDNCart",
+    "releaseDate": "18 March, 2017",
+    "price": 32.99,
+    "starRating": 4.2,
+    "imageUrl": "http://lorempixel.com/200/200/"
+  }]
+
+  toggleImage(): void {
+    this.showImage = !this.showImage;
+  }
 
 }

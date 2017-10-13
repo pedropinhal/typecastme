@@ -1,15 +1,16 @@
-<h2>Product List</h2>
+<h2>{{pageTitle}}</h2>
 <form>
   <div class="form-group">
     <input type="email" class="form-control" id="filterBy" placeholder="Filter by">
   </div>
 </form>
-
-<table class="table">
+<table class="table" *ngIf='products && products.length'>
   <thead>
     <tr>
       <th>
-        <button type="button" class="btn btn-primary">Show Image</button>
+        <button type="button" (click)='toggleImage()' class="btn btn-primary">
+          {{showImage? 'Hide':'Show'}} Images
+        </button>
       </th>
       <th>Product</th>
       <th>Code</th>
@@ -19,13 +20,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>snuff</td>
-      <td>sn</td>
-      <td>yes</td>
-      <td>£2</td>
-      <td>2*</td>
+    <tr *ngFor='let product of products'>
+      <th scope="row">
+        <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName' />
+      </th>
+      <td>{{product.productName}}</td>
+      <td>{{product.productCode}}</td>
+      <td>{{product.releaseDate}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.starRating}}</td>
     </tr>
 
   </tbody>
