@@ -1,8 +1,9 @@
 <h2>{{pageTitle}}</h2>
-<form>
+<form name="filter">
   <div class="form-group">
-    <input type="email" class="form-control" id="filterBy" placeholder="Filter by">
+    <input type="text" [(ngModel)]='listFilter' name="filter" class="form-control" placeholder="Filter by">
   </div>
+  <label>Filtered by: {{listFilter}}</label>
 </form>
 <table class="table" *ngIf='products && products.length'>
   <thead>
@@ -25,9 +26,9 @@
         <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName' />
       </th>
       <td>{{product.productName}}</td>
-      <td>{{product.productCode}}</td>
+      <td>{{product.productCode | lowercase}}</td>
       <td>{{product.releaseDate}}</td>
-      <td>{{product.price}}</td>
+      <td>{{product.price | currency:'GBP':true:'1.2-2'}}</td>
       <td>{{product.starRating}}</td>
     </tr>
 
