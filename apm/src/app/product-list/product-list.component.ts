@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
     "price": 32.99,
     "starRating": 4.2,
     "imageUrl": "http://lorempixel.com/200/200/"
-  },{
+  }, {
     "productId": 3,
     "productName": "Shovel",
     "productCode": "GDN-shovel",
@@ -60,6 +60,9 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
+  onRatingClicked(message: string):void {
+this.pageTitle = 'Page title:' + message;
+  }
   ngOnInit() {
     console.log("init");
   }
