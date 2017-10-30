@@ -5,6 +5,7 @@ import {
 import {
   IProduct
 } from './product'
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'pm-products',
@@ -17,27 +18,10 @@ export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
   _listFilter: string;
   filteredProducts: IProduct[];
-  products: IProduct[] = [{
-    "productId": 2,
-    "productName": "Garden Cart",
-    "productCode": "GDN-Cart",
-    "releaseDate": "18 March, 2017",
-    "price": 32.99,
-    "starRating": 4.2,
-    "imageUrl": "http://lorempixel.com/200/200/"
-  }, {
-    "productId": 3,
-    "productName": "Shovel",
-    "productCode": "GDN-shovel",
-    "releaseDate": "27 November, 2019",
-    "price": 13.99,
-    "starRating": 3.7,
-    "imageUrl": "http://lorempixel.com/200/200/"
-  }]
+  products: IProduct[];
 
-  constructor() {
-    this.filteredProducts = this.products;
-    this.listFilter = 'cart';
+  constructor(private _productService: ProductService) {
+   
   }
 
   get listFilter(): string {
@@ -60,10 +44,12 @@ export class ProductListComponent implements OnInit {
     this.showImage = !this.showImage;
   }
 
-  onRatingClicked(message: string):void {
-this.pageTitle = 'Page title:' + message;
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Page title:' + message;
   }
+
   ngOnInit() {
-    console.log("init");
+    this.products = this._productService.getProducts();
+    this.filteredProducts = this.products;
   }
 }
