@@ -1,29 +1,25 @@
-import {
-  Injectable
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IProduct } from '../product-list/product';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw'
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/do'
 
 @Injectable()
 export class ProductService {
+  private _productUrl = './api/products/products.json';
 
-  getProducts(): IProduct[] {
-    return [{
-      "productId": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-Cart",
-      "releaseDate": "18 March, 2017",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "http://lorempixel.com/200/200/"
-    }, {
-      "productId": 3,
-      "productName": "Shovel",
-      "productCode": "GDN-shovel",
-      "releaseDate": "27 November, 2019",
-      "price": 13.99,
-      "starRating": 3.7,
-      "imageUrl": "http://lorempixel.com/200/200/"
-    }]
+  constructor(private _http: HttpClient){}
+
+  getProducts(): Observable<IProduct[]> {
+    return this._http.get<IProduct[]>(this._productUrl)
+      .do(data => console.log('All: ' + JSON.stringify(data)))
+      .catch(this.handleError);
   }
 
+  private handleError(err: HttpErrorResponse){
+    console.log(err.message);
+    return Observable.throw(err.message);
+  }
 }

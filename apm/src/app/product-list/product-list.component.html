@@ -23,7 +23,7 @@
   <tbody>
     <tr *ngFor='let product of filteredProducts'>
       <th scope="row">
-        <img *ngIf='showImage' [src]='product.imageUrl' [title]='product.productName' />
+        <img *ngIf='showImage' [src]='product.imageUrl' [width]=50 [title]='product.productName' />
       </th>
       <td>{{product.productName}}</td>
       <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
