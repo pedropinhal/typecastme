@@ -8,13 +8,15 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
 import { StarComponent } from './star/star.component';
 import { ProductService } from './services/product.service';
+import { ProductDetailComponentComponent } from './products/product-detail-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    StarComponent
+    StarComponent,
+    ProductDetailComponentComponent
   ],
   imports: [
     BrowserModule,
