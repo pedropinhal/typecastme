@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {
+  Component
+} from '@angular/core';
+import {
+  HttpClient
+} from '@angular/common/http';
+import {
+  HttpHeaders
+} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +15,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   spotlightViewPin = '';
-  constructor(private http: HttpClient){
+  apiUrl = 'http://localhost:5000/api/spotlight';
+  spotlightImage = '';
+  json;
+  constructor(private http: HttpClient) {
 
   }
-  // https://www.spotlight.com/8014-6727-0395
-// https://www.spotlight.com/photo/~540x540/ffffff/loose/1/M153065.0103.jpg
+
   onSubmit() {
-    this.http.get('https://www.spotlight.com/8014-6727-0395').subscribe(data => {
-      // Read the result field from the JSON response.
-      console.log(data);
+    var headers = new HttpHeaders()
+      .set('Access-Control-Allow-Origin', 'http://localhost:5000');
+    this.http.get(`${this.apiUrl}/${this.spotlightViewPin}`, {
+      headers
+    }).subscribe(data => {
+      this.json = data;
+      console.log(this.json);
     });
-    console.log(this.spotlightViewPin);
+    console.log(this.json);
   }
 }
