@@ -1,11 +1,14 @@
 <div class="container">
   <h1>Oh, hello!</h1>
+  <p>
+    <img [src]='spotlightImage' />
+  </p>
   <form (ngSubmit)="onSubmit()" #spotlightForm="ngForm">
     <div class="form-group">
       <label for="spotlightViewPin">Please enter your Spotlight View PIN</label>
 
-      <input type="text" class="form-control" id="spotlightViewPin" [(ngModel)]="spotlightViewPin" name="spotlightViewPin"
-      #name="ngModel" required aria-describedby="spotlightViewPinHelp" placeholder="Enter your PIN">
+      <input type="text" class="form-control" id="spotlightViewPin" [(ngModel)]="spotlightViewPin" name="spotlightViewPin" #name="ngModel"
+        required aria-describedby="spotlightViewPinHelp" placeholder="Enter your PIN">
       <small id="spotlightViewPinHelp" class="form-text text-muted">We'll never share your details with anyone else.</small>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
