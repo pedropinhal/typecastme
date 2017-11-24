@@ -30,8 +30,7 @@ export class AppComponent {
     }).subscribe(data => {
       this.json = data;
       this.spotlightImage = this.json.url;
-      console.log(this.json);
     });
-    console.log(this.json);
+   
   }
 }
